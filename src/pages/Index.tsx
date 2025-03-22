@@ -14,7 +14,7 @@ const Index = () => {
   };
 
   const handleDownloadResume = () => {
-    window.open('/src/assets/resume/Manas_Tripathi.pdf', '_blank');
+    window.open('/public/Manas_Tripathi.pdf', '_blank');
   };
 
   return (
@@ -25,7 +25,7 @@ const Index = () => {
           <div className="max-w-3xl mx-auto text-center">
             <div className="mb-6 flex justify-center">
               <img 
-                src="/src/assets/images/profile.jpg" 
+                src="/public/profile.jpg" 
                 alt="Manas Tripathi" 
                 className="w-48 h-48 rounded-full object-cover border-2 border-blue-400"
               />
