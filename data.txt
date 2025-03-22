@@ -1,0 +1,76 @@
+Name : Manas Tripathi
+Ex Intern @ Hinnts Consultancy | SDE @ Techginity | JIIT Noida CSE | Tech Enthusiast
+gmail : manas348@gmail.com  
+
+Aim : I aspire to pursue a challenging role that fosters growth and allows me to further develop my skills, ultimately contributing to the organization's success while continuously enhancing my own capabilities.
+
+EDUCATIONAL QUALIFICATIONS
+B. Tech, Information Technology – JIIT Noida | 7.5/10 | 2024
+Class XII, CBSE – Ryan International School, Surat | 86% | 2020
+Class X, ICSE – Lilavatibai Podar Sr. Secondary School, Mumbai | 90.8% | 2018
+Skills:
+Machine Learning, Deep Learning, Web Scraping, Python, C++, HTML, DBMS, PowerBI, Linux, n8n, AWS, RAG-powered applications.
+
+WORK EXPERIENCE
+1.Techginity – Software Developer, Machine Learning (Jan ‘24 – Present)
+Fine Tune LLMs: Fine-tuned open-source LLMs on custom datasets, enhancing model performance for targeted applications.
+AI Avatar: Created a personalized AI avatar using LipSync and LipGan for marketing applications.
+Scraping: Mastered web scraping with Selenium to efficiently build datasets for recommendation systems.
+Stable Diffusion: Generated high-quality images from text using Stable Diffusion and GenAI tools via prompt engineering.
+GPU Optimization: Optimized GPU usage, achieving a 10x reduction in computation time and improved memory efficiency.
+Multi-modal Engine: Lead developer in creating a 3-layered engine (ingestion, retrieval & insights) using RAG-based architecture.
+n8n : Built a no code telegram bot which would take in a essay topic from the user and generate an ai avatar speaking on that topic. Integrated the topic with heygen's avatar creation api, created email registration and validation features , 
+all without using any code. Orchestrated different processes using agentic framework
+This n8n workflow automates Telegram-based video generation and user registration, orchestrated by an OpenAI Agent. The agent dynamically invokes PostgreSQL, HeyGen, and other tools to handle requests.
+
+
+2.Hinnts Consultancy – Data Research & Analysis (May ‘23 – Jul ‘23)
+Analysis: Analyzed a company's employee dataset & work-life insights through visualizations to increase productivity.
+Database Management: Designed the database schema and framework using MySQL for improving data quality & efficiency.
+Extraction & Automation: Developed & automated a module for extracting raw data from sources via Google Authentication, which performed time series analysis on datasets.
+
+ACADEMIC PROJECTS
+
+1.Multi-label Sentiment Analysis (ML)
+Implemented LSTM, CNN, Bi-LSTM using 2-word embeddings to perform comparative analysis on 10+ features.
+Achieved 86% accuracy with an LSTM-based model.
+
+2.Hate Speech Detection (ML)
+Developed deep learning models to identify political alignment of users based on tweets.
+Created a polarization meter interface to classify tweets under 3 sentiment labels.
+27% of users were determined to be polarized based on a developed metric score.
+Conducted time-series analysis to track stance changes over time.
+ACADEMIC ACHIEVEMENTS
+"Elite" Silver Merit Certification in Affective Computing by NPTEL (2024).
+Completed Deep Learning Foundations to Stable Diffusion by Jeremy Howard (2024).
+Completed PyTorch for Deep Learning Boot Camp by Andrei Neagoie (2024).
+Earned Python & Machine Learning Boot Camp certification from Pierian Training (2022).
+AA Grade (10/10) in Final Year Major Project & A Grade (9/10) in Minor Projects (2023).
+Merit Holder Award for being in the Top 40 among 600+ students in ICSE Class 10 (2018).
+State Rank 41 in International English Laureate Olympiad (L1) among 21k+ students (2015).
+POSITIONS OF RESPONSIBILITY
+Head, OSA Optica
+Coordinated 10+ flagship events in JSCOPE 5.0 and led the recruitment of 30+ members (2023).
+Negotiated 2 sponsorships (worth ₹25k) & secured 2 media partners for JSCOPE 4.0 (2022).
+Head, Eloquence LitSoc
+Launched 'ThyEloquence' blog to provide a writing platform for students across the campus (2024).
+Organized 10+ intra-college literary competitions with 100+ participants (2023).
+Anchored events under Jaypee Youth Club; conducted sessions on scriptwriting & hosting.
+
+EXTRA-CURRICULAR ACTIVITIES
+Sports:
+Gold Medalist in Intra-College Football Competition (15+ teams across all 4 JIIT campuses).
+Semi-Finalist in IIT Delhi Sports Fest'22 as part of the Jaypee Football team (12 participating teams).
+Public Speaking:
+1st Prize in the 'Nazm' Poetry Competition at Lady Shri Ram College (25+ participants).
+Social Work:
+Volunteered in Teaching Sessions for underprivileged kids and participated in NSS blood donation drives.
+
+Interests:
+Writing (@thecarpediempoetry)
+Football
+Playing Guitar
+Public Speaking
+
+
+Skills based experience
