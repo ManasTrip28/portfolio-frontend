@@ -22,6 +22,11 @@ const Index = () => {
     }
   }, [index]);
 
+  // Ensure page stays at top on load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // Runs only on mount
+
   const toggleChatbot = () => {
     setShowChatbot(!showChatbot);
     setShowChatButton(showChatbot);
@@ -95,39 +100,39 @@ const Index = () => {
       </div>
 
       <div className="mt-32 py-16 border-t border-gray-800">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-6xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-              Get in Touch
-            </h2>
-            <p className="text-gray-400 mb-8">
-              Feel free to reach out for collaborations or just a friendly chat
-            </p>
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-6xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+            Get in Touch
+          </h2>
+          <p className="text-gray-400 mb-8">
+            Feel free to reach out for collaborations or just a friendly chat
+          </p>
+          
+          <div className="flex justify-center gap-6">
+            <a 
+              href="https://www.linkedin.com/in/manas-tripathi-711320217/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex flex-col items-center group"
+            >
+              <div className="bg-blue-600 p-4 rounded-full transition-transform group-hover:scale-110">
+                <Linkedin size={28} />
+              </div>
+              <span className="mt-2 text-sm text-gray-400 group-hover:text-blue-400">LinkedIn</span>
+            </a>
             
-            <div className="flex justify-center gap-6">
-              <a 
-                href="https://www.linkedin.com/in/manas-tripathi-711320217/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex flex-col items-center group"
-              >
-                <div className="bg-blue-600 p-4 rounded-full transition-transform group-hover:scale-110">
-                  <Linkedin size={28} />
-                </div>
-                <span className="mt-2 text-sm text-gray-400 group-hover:text-blue-400">LinkedIn</span>
-              </a>
-              
-              <a 
-                href="mailto:manast348@gmail.com" 
-                className="flex flex-col items-center group"
-              >
-                <div className="bg-red-600 p-4 rounded-full transition-transform group-hover:scale-110">
-                  <Mail size={28} />
-                </div>
-                <span className="mt-2 text-sm text-gray-400 group-hover:text-red-400">Email</span>
-              </a>
-            </div>
+            <a 
+              href="mailto:manast348@gmail.com" 
+              className="flex flex-col items-center group"
+            >
+              <div className="bg-red-600 p-4 rounded-full transition-transform group-hover:scale-110">
+                <Mail size={28} />
+              </div>
+              <span className="mt-2 text-sm text-gray-400 group-hover:text-red-400">Email</span>
+            </a>
           </div>
         </div>
+      </div>
 
       {showChatButton && (
         <button 
@@ -160,7 +165,6 @@ const Index = () => {
         </div>
       )}
 
-      {/* Move CSS to a global scope */}
       <style>{`
         .animate-blink {
           animation: blink 0.8s infinite;
