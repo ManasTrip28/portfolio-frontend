@@ -1,12 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Chatbot from '@/components/Chatbot';
 import { Button } from '@/components/ui/button';
 import SkillsGraph from '@/components/SkillGraph';
 import { Linkedin, Mail } from 'lucide-react';
+
 const Index = () => {
-  // State to track if we should show the floating chat button
   const [showChatButton, setShowChatButton] = useState(true);
   const [showChatbot, setShowChatbot] = useState(false);
+
+  const fullText = "I aspire to pursue a challenging role that fosters growth and allows me to further develop my skills, ultimately contributing to the organization’s success while continuously enhancing my own capabilities";
+  const [displayedText, setDisplayedText] = useState('');
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (index < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText((prev) => prev + fullText[index]);
+        setIndex(index + 1);
+      }, 50);
+      return () => clearTimeout(timeout);
+    }
+  }, [index]);
 
   const toggleChatbot = () => {
     setShowChatbot(!showChatbot);
@@ -34,14 +48,14 @@ const Index = () => {
               Manas Tripathi
             </h1>
             <p className="text-xl text-white mb-12">
-            I aspire to pursue a challenging role that fosters growth and allows me to further develop my skills, ultimately contributing to the organization’s success while continuously enhancing my own capabilities
+              {displayedText}
+              <span className={index < fullText.length ? "animate-blink" : ""}>|</span>
             </p>
             <div className="flex justify-center gap-4">
-
-            <Button 
-            onClick={handleDownloadResume} 
-            className="bg-gray-700 hover:from-blue-400 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-            >
+              <Button 
+                onClick={handleDownloadResume} 
+                className="bg-gray-700 hover:from-blue-400 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              >
                 Download Resume
               </Button>
             </div>
@@ -53,27 +67,26 @@ const Index = () => {
           <div className="max-w-4xl mx-auto">
             <div className="mb-16">
               <h2 className="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-              Explore My Portfolio: Ask My AI Assistant
+                Explore My Portfolio: Ask My AI Assistant
               </h2>
-              <p className="text  gray-400 mb-6">
+              <p className="text gray-400 mb-6">
                 Ask questions about my skills, experience, or projects
               </p>
-              
               <div className="chatbot-wrapper">
                 <Chatbot />
               </div>
             </div>
           </div>
         </div>
+
         <div className="mt-32 mb-20">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-6xl font-bold mb-2 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
               Technical Skills
             </h2>
             <p className="text-white font-bold mb-14 text-center">
-               My core technical competencies
+              My core technical competencies
             </p>
-            
             <div className="skills-graph-container h-[500px] w-full">
               <SkillsGraph />
             </div>
@@ -115,6 +128,7 @@ const Index = () => {
             </div>
           </div>
         </div>
+
       {showChatButton && (
         <button 
           onClick={toggleChatbot}
@@ -127,7 +141,6 @@ const Index = () => {
         </button>
       )}
       
-      {/* Mobile chatbot overlay */}
       {showChatbot && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:hidden">
           <div className="absolute inset-0 bg-black opacity-75" onClick={toggleChatbot}></div>
@@ -146,6 +159,18 @@ const Index = () => {
           </div>
         </div>
       )}
+
+      {/* Move CSS to a global scope */}
+      <style>{`
+        .animate-blink {
+          animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+          50% {
+            opacity: 0;
+          }
+        }
+      `}</style>
     </div>
   );
 };
