@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, FileSearch } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
@@ -20,55 +19,49 @@ const Chatbot: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
-//  const scrollToBottom = () => {
-//    const halfScrollPosition = document.body.scrollHeight / 2;
-//    window.scrollTo({
-//      top: halfScrollPosition,
-//      behavior: 'smooth'
-//    });
-//  };
-
-//  useEffect(() => {
-//    scrollToBottom();
-//  }, [messages]);
-
-const handleBotResponse = async (userMessage: string) => {
-  setIsTyping(true);
-  try {
-    const response = await fetch('https://artemis101.pythonanywhere.com/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ message: userMessage })
-    });
-
-    if (!response.ok) {
-      throw new Error(`Network error: ${response.status}`);
+  // Scroll to the latest message whenever messages change
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
+  }, [messages, isTyping]); // Trigger on messages or isTyping change
 
-    const data = await response.json();
-    const botResponse = data.response;
-    
-    setMessages(prevMessages => [
-      ...prevMessages,
-      { text: botResponse, sender: 'bot', timestamp: new Date() }
-    ]);
-  } catch (error) {
-    console.error('Error fetching bot response:', error);
-    setMessages(prevMessages => [
-      ...prevMessages,
-      {
-        text: "Sorry, there was an error connecting to the server.",
-        sender: 'bot',
-        timestamp: new Date()
+  const handleBotResponse = async (userMessage: string) => {
+    setIsTyping(true);
+    try {
+      const response = await fetch('https://artemis101.pythonanywhere.com/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: userMessage })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Network error: ${response.status}`);
       }
-    ]);
-  } finally {
-    setIsTyping(false);
-  }
-};
 
+      const data = await response.json();
+      const botResponse = data.response;
+      
+      setMessages(prevMessages => [
+        ...prevMessages,
+        { text: botResponse, sender: 'bot', timestamp: new Date() }
+      ]);
+    } catch (error) {
+      console.error('Error fetching bot response:', error);
+      setMessages(prevMessages => [
+        ...prevMessages,
+        {
+          text: "Sorry, there was an error connecting to the server.",
+          sender: 'bot',
+          timestamp: new Date()
+        }
+      ]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

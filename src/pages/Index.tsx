@@ -17,7 +17,7 @@ const Index = () => {
       const timeout = setTimeout(() => {
         setDisplayedText((prev) => prev + fullText[index]);
         setIndex(index + 1);
-      }, 50);
+      }, 80);
       return () => clearTimeout(timeout);
     }
   }, [index]);
