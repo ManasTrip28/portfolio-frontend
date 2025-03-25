@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, FileSearch } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
@@ -17,58 +16,54 @@ const Chatbot: React.FC = () => {
   const [inputMessage, setInputMessage] = useState<string>('');
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [resultsFound, setResultsFound] = useState<number | null>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+  const [hasInteracted, setHasInteracted] = useState(false); // Track user interaction
 
-//  const scrollToBottom = () => {
-//    const halfScrollPosition = document.body.scrollHeight / 2;
-//    window.scrollTo({
-//      top: halfScrollPosition,
-//      behavior: 'smooth'
-//    });
-//  };
-
-//  useEffect(() => {
-//    scrollToBottom();
-//  }, [messages]);
-
-const handleBotResponse = async (userMessage: string) => {
-  setIsTyping(true);
-  try {
-    const response = await fetch('https://artemis101.pythonanywhere.com/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ message: userMessage })
-    });
-
-    if (!response.ok) {
-      throw new Error(`Network error: ${response.status}`);
+  // Scroll the chatbot messages container to the bottom only after interaction
+  useEffect(() => {
+    const container = messagesContainerRef.current;
+    if (container && hasInteracted) {
+      container.scrollTop = container.scrollHeight;
     }
+  }, [messages, isTyping, hasInteracted]);
 
-    const data = await response.json();
-    const botResponse = data.response;
-    
-    setMessages(prevMessages => [
-      ...prevMessages,
-      { text: botResponse, sender: 'bot', timestamp: new Date() }
-    ]);
-  } catch (error) {
-    console.error('Error fetching bot response:', error);
-    setMessages(prevMessages => [
-      ...prevMessages,
-      {
-        text: "Sorry, there was an error connecting to the server.",
-        sender: 'bot',
-        timestamp: new Date()
+  const handleBotResponse = async (userMessage: string) => {
+    setIsTyping(true);
+    try {
+      const response = await fetch('https://artemis101.pythonanywhere.com/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: userMessage })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Network error: ${response.status}`);
       }
-    ]);
-  } finally {
-    setIsTyping(false);
-  }
-};
 
+      const data = await response.json();
+      const botResponse = data.response;
+      
+      setMessages(prevMessages => [
+        ...prevMessages,
+        { text: botResponse, sender: 'bot', timestamp: new Date() }
+      ]);
+    } catch (error) {
+      console.error('Error fetching bot response:', error);
+      setMessages(prevMessages => [
+        ...prevMessages,
+        {
+          text: "Sorry, there was an error connecting to the server.",
+          sender: 'bot',
+          timestamp: new Date()
+        }
+      ]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -82,6 +77,7 @@ const handleBotResponse = async (userMessage: string) => {
     
     setMessages(prevMessages => [...prevMessages, newMessage]);
     setInputMessage('');
+    setHasInteracted(true); // Mark as interacted when user sends a message
     
     toast({
       title: "Message sent",
@@ -94,7 +90,7 @@ const handleBotResponse = async (userMessage: string) => {
   return (
     <div className="chatbot-container">
       {messages.length > 0 && (
-        <div className="chatbot-messages">
+        <div className="chatbot-messages" ref={messagesContainerRef}>
           {resultsFound && (
             <div className="found-information">
               <FileSearch size={16} />
@@ -123,7 +119,6 @@ const handleBotResponse = async (userMessage: string) => {
               </div>
             </div>
           )}
-          <div ref={messagesEndRef} />
         </div>
       )}
 
